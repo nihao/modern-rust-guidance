@@ -1,0 +1,15 @@
+{
+  "name": "nihao",
+  "description": "Modern Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents.",
+  "owner": {
+    "name": "nihao"
+  },
+  "plugins": [
+    {
+      "name": "modern-rust-guidance",
+      "source": "./",
+      "description": "Modern Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents",
+      "version": "1.0.0"
+    }
+  ]
+}

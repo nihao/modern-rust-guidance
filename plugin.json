@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "modern-rust-guidance",
+  "version": "1.0.0",
+  "description": "Modern Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents",
+  "author": {
+    "name": "nihao",
+    "url": "https://github.com/nihao"
+  },
+  "homepage": "https://github.com/nihao/modern-rust-guidance",
+  "repository": "https://github.com/nihao/modern-rust-guidance",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "rust",
+    "rust-2024",
+    "backend",
+    "sqlx",
+    "postgresql",
+    "cqs",
+    "ddd",
+    "dod",
+    "best-practices"
+  ]
+}

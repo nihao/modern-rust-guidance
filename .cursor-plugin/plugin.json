@@ -1,0 +1,8 @@
+{
+  "name": "modern-rust-guidance",
+  "description": "Modern Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents.",
+  "version": "1.0.0",
+  "author": {
+    "name": "nihao"
+  }
+}

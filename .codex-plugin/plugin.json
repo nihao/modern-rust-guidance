@@ -1,0 +1,35 @@
+{
+  "name": "modern-rust-guidance",
+  "version": "1.0.0",
+  "description": "Modern Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents",
+  "author": {
+    "name": "nihao",
+    "url": "https://github.com/nihao"
+  },
+  "homepage": "https://github.com/nihao/modern-rust-guidance",
+  "repository": "https://github.com/nihao/modern-rust-guidance",
+  "license": "MIT",
+  "keywords": [
+    "rust",
+    "rust-2024",
+    "backend",
+    "sqlx",
+    "postgresql",
+    "best-practices"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Modern Rust Guidance",
+    "shortDescription": "Rust 2024 & backend engineering standards",
+    "longDescription": "Self-contained, domain-neutral Rust 2024 language idioms and high-reliability backend engineering standards (DDD/DOD orthogonality, CQS, exact fixed-point arithmetic, typed error causal chains, stateless SQLx/PostgreSQL transaction pipelines, and high-signal testing).",
+    "developerName": "nihao",
+    "category": "Developer Tools",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/nihao/modern-rust-guidance",
+    "supportURL": "https://github.com/nihao/modern-rust-guidance/issues"
+  }
+}
