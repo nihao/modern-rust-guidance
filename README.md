@@ -4,13 +4,13 @@
 
 # Modern Rust Guidance
 
-面向 AI 编码代理的 **Rust 2024 语言惯用法与高可靠服务端工程规范** 插件。本技能包保持客观、自包含、业务中立，覆盖 Rust 2024 语法演进、内存与并发健全性、精确整数与定点核算、三层 `thiserror` 错误因果链、PostgreSQL/SQLx 无状态事务流水线及高信噪比测试分层。
+<p align="center"><b>English</b> · <a href="README.zh-CN.md">简体中文</a></p>
 
-*Self-contained, domain-neutral Rust 2024 language idioms and high-reliability backend engineering standards for AI coding agents.*
+**Modern Rust 2024 language idioms and high-reliability backend engineering standards** packaged for AI coding agents. This skill is self-contained and domain-neutral, covering Rust 2024 Edition syntax, memory and concurrency soundness, exact fixed-point integer arithmetic, three-tier `thiserror` error causal chains, stateless PostgreSQL/SQLx transaction pipelines, and high-signal test layering.
 
 ---
 
-## 安装方式（Installation）
+## Installation
 
 <details open>
 <summary><b>Google Antigravity</b></summary>
@@ -60,54 +60,54 @@ codex plugin add modern-rust-guidance@nihao
 </details>
 
 <details>
-<summary><b>手动复制到工作区（Manual Workspace Skill）</b></summary>
+<summary><b>Manual Workspace Skill</b></summary>
 
-将 [`skills/modern-rust-guidance`](skills/modern-rust-guidance/SKILL.md) 复制到目标项目的 `.agents/skills/modern-rust-guidance` 目录。
+Copy [`skills/modern-rust-guidance`](skills/modern-rust-guidance/SKILL.md) into your target project's `.agents/skills/modern-rust-guidance` directory.
 
 </details>
 
 ---
 
-## 双层按需渐进加载分册（Progressive Reference Guides）
+## Progressive Reference Guides
 
-入口规范文件为 [`skills/modern-rust-guidance/SKILL.md`](skills/modern-rust-guidance/SKILL.md)。编码代理按任务触及的**语言机制**与**工程边界**按需读取对应分册，无需一次性加载全部文档：
+The main skill entry point is [`skills/modern-rust-guidance/SKILL.md`](skills/modern-rust-guidance/SKILL.md). Coding agents load reference chapters on demand based on the language feature or engineering boundary involved, avoiding unnecessary context bloat:
 
-### 1. 语言与语法特性层（`references/lang/`）
+### 1. Language & Syntax Layer (`references/lang/`)
 
-| 分册 | 覆盖范围 |
+| Guide | Coverage |
 | --- | --- |
-| [01-edition2024-and-syntax.md](skills/modern-rust-guidance/references/lang/01-edition2024-and-syntax.md) | RPIT `+ use<...>`、`async \|...\|`、原生异步 Trait、`unsafe extern`/`#[unsafe(...)]`、`LazyLock`、穷尽解构与 `@`/切片模式、惰性组合子 |
-| [02-ownership-memory-and-collections.md](skills/modern-rust-guidance/references/lang/02-ownership-memory-and-collections.md) | 参数借用契约、`Cow`、四步借用消解、`mem::take`、Drop 顺序、Niche 与大枚举 `Box` 瘦身、`Entry` API、`BTreeMap`、缓冲流 I/O |
-| [03-types-traits-generics-and-macros.md](skills/modern-rust-guidance/references/lang/03-types-traits-generics-and-macros.md) | 受检构造与 Newtype、关联类型 vs 泛型、`Borrow` vs `AsRef`、薄泛型壳去膨胀、标准 Trait 一致性、闭包捕获、`const {}`、卫生 `macro_rules!` |
-| [04-async-concurrency-and-unsafe.md](skills/modern-rust-guidance/references/lang/04-async-concurrency-and-unsafe.md) | Future 跨 `.await` 体积、`spawn_blocking`、锁不跨 `.await`、`select!` 取消安全、有界 Channel 与 Atomic 内存序、Rust 2024 `unsafe`/FFI |
+| [01-edition2024-and-syntax.md](skills/modern-rust-guidance/references/lang/01-edition2024-and-syntax.md) | RPIT `+ use<...>`, `async \|...\|` closures, native async traits, `unsafe extern` / `#[unsafe(...)]`, `LazyLock`, exhaustive destructuring, `@` and slice patterns, lazy combinators |
+| [02-ownership-memory-and-collections.md](skills/modern-rust-guidance/references/lang/02-ownership-memory-and-collections.md) | Borrowing signatures, `Cow`, 4-step borrow conflict resolution, `mem::take`, drop order, niche & `Box` enum slimming, `Entry` API, `BTreeMap`, buffered I/O |
+| [03-types-traits-generics-and-macros.md](skills/modern-rust-guidance/references/lang/03-types-traits-generics-and-macros.md) | Checked constructors & newtypes, associated types vs generics, `Borrow` vs `AsRef`, thin generic shells, standard trait coherence, closure captures, `const {}`, hygienic `macro_rules!` |
+| [04-async-concurrency-and-unsafe.md](skills/modern-rust-guidance/references/lang/04-async-concurrency-and-unsafe.md) | Future size across `.await`, `spawn_blocking`, never holding sync locks across `.await`, `select!` cancel safety, bounded channels, atomic memory ordering, Rust 2024 `unsafe` & FFI |
 
-### 2. 高可靠服务端工程层（`references/eng/`）
+### 2. High-Reliability Backend Engineering Layer (`references/eng/`)
 
-| 分册 | 覆盖范围 |
+| Guide | Coverage |
 | --- | --- |
-| [01-architecture-cqs-and-api.md](skills/modern-rust-guidance/references/eng/01-architecture-cqs-and-api.md) | 轻量 DDD × 实用 DOD 范式分工、用例级 CQS、纯核心零 I/O、薄 `mod.rs`、工程角色后缀、存储恢复边界与内部 API 克制 |
-| [02-numeric-errors-and-observability.md](skills/modern-rust-guidance/references/eng/02-numeric-errors-and-observability.md) | 涉精度零浮点与 `checked_*` 定点算术、三层 `thiserror` 因果链、禁用越权 `anyhow`、边界单点脱敏日志、后台非盲目重试 |
-| [03-postgres-sqlx-and-transactions.md](skills/modern-rust-guidance/references/eng/03-postgres-sqlx-and-transactions.md) | 运行时参数化 SQLx、无状态连接矩阵、私有 `FromRow`、`ANY`/`UNNEST` 防 N+1、两类写事务流水线、失败关闭与追加迁移 |
-| [04-serde-lints-testing-and-review.md](skills/modern-rust-guidance/references/eng/04-serde-lints-testing-and-review.md) | 受检 `#[serde(try_from)]`、规范固定键序、双 Feature 图、工作区 Lint 与 `#[expect]`、性能实测铁律、高信噪比测试与三级审查 |
+| [01-architecture-cqs-and-api.md](skills/modern-rust-guidance/references/eng/01-architecture-cqs-and-api.md) | Lightweight DDD × pragmatic DOD division, use-case CQS, zero-I/O pure core, thin `mod.rs`, role suffixes, storage recovery boundaries, and internal API restraint |
+| [02-numeric-errors-and-observability.md](skills/modern-rust-guidance/references/eng/02-numeric-errors-and-observability.md) | Zero floats for exact values with `checked_*` fixed-point math, 3-tier `thiserror` causal chains, scoped `anyhow`, single-boundary redacted logging, non-blind retries |
+| [03-postgres-sqlx-and-transactions.md](skills/modern-rust-guidance/references/eng/03-postgres-sqlx-and-transactions.md) | Runtime parameterized SQLx, stateless connection matrix, private `FromRow`, `ANY`/`UNNEST` anti-N+1, two write transaction pipelines, fail-closed audit/idempotency & append-only migrations |
+| [04-serde-lints-testing-and-review.md](skills/modern-rust-guidance/references/eng/04-serde-lints-testing-and-review.md) | Checked `#[serde(try_from)]`, canonical key ordering, dual Cargo feature graphs, workspace lints & `#[expect]`, benchmark-first optimization, high-signal testing & 3-tier code review |
 
 ---
 
-## 全局十大硬红线（10 Critical Invariants）
+## 10 Critical Invariants
 
-1. **纯核心同步零 I/O**：领域纯计算模块保持同步确定性计算，不引入 `async`、数据库驱动、网络、文件、环境变量、时钟或随机源。
-2. **组合根与 CQS 单向正交**：服务宿主仅负责装配与协议解包；写命令唯一提交状态，查询只读投影已提交事实，写命令不反向依赖 `queries`。
-3. **涉精度数值绝对零浮点**：要求精确守恒的金额、数量、比率、权重与阈值禁用 `f32`/`f64` 与截断 `as`，使用明确尺度的有符号整数及 `checked_*`/`TryFrom`。
-4. **强类型因果链与禁用越权 `anyhow`**：生产代码禁用 `.unwrap()`；库与请求处理层禁用 `anyhow`，用 `thiserror` 保留 `#[source]`。
-5. **唯一事务提交者与失败关闭**：对外写命令开启事务并唯一 `commit`，协作函数借用 `&mut Transaction`；状态写入、审计与幂等收据同事务原子提交。
-6. **运行时参数化 SQL 与防 N+1**：使用参数化运行时 SQLx 配私有 `FromRow`（禁持池 `Repository` 套壳）；批量查询用 `ANY($1)`/`UNNEST`，禁循环内 `.await`。
-7. **Edition 2024 现代语法与受检构造**：遵循 RPIT `+ use<...>`、原生 `async |...|` 与惰性组合子；带不变量类型保持私有字段与受检构造。
-8. **确定性顺序与加密摘要**：可观察输出与规范序列化不依赖 `HashMap`/`HashSet` 随机顺序；持久化摘要使用规范编码与加密散列，禁用 `DefaultHasher`。
-9. **并发守卫与 Rust 2024 `unsafe`**：同步锁不跨 `.await`；RAII 守卫必须具名绑定；CPU 重计算卸载至 `spawn_blocking`；`unsafe fn` 内包裹最小 `unsafe {}` 并配 `# Safety` 与 `// SAFETY:`。
-10. **Lint 纪律与高信噪比测试**：禁用源码 `#![deny(warnings)]` 与 `#[allow]`，单点误报用 `#[expect]`；单元测试聚焦纯逻辑算子与闭环守卫，持久化验证收敛至唯一 `tests/postgres.rs`。
+1. **Pure Core Zero I/O**: Domain computation modules remain synchronous and deterministic; never introduce `async`, database drivers, network, filesystem, env vars, clocks, or RNG.
+2. **Composition Root & Unidirectional CQS**: Service hosts only wire dependencies and unpack protocols; commands commit state once, queries project committed facts read-only, and commands never depend on `queries`.
+3. **Zero Floating-Point for Exact Values**: Never use `f32`/`f64`, lossy `as` casts, or `wrapping_*`/`saturating_*` for money, quantities, rates, weights, or thresholds; use explicitly scaled signed integers with `checked_*`/`TryFrom`.
+4. **Typed Error Causal Chains & Scoped `anyhow`**: Never call `.unwrap()` in production code; forbid `anyhow` in library crates and request handlers (`anyhow` belongs only in process `main` and CLI entrypoints); preserve original `#[source]` via `thiserror`.
+5. **Single Transaction Committer & Fail-Closed**: Public write commands own the pool transaction and perform the sole `commit`; collaborators take `&mut Transaction`; state writes, audit logs, and idempotency receipts commit atomically or roll back together.
+6. **Runtime Parameterized SQL & No N+1**: Use runtime parameterized SQLx queries with module-private `FromRow` structs (no pool-holding `Repository` wrappers or `Arc<PgPool>`); batch with `ANY($1)`/`UNNEST` instead of `.await` inside loops.
+7. **Edition 2024 Idioms & Checked Construction**: Apply RPIT `+ use<...>`, native `async |...|`, and lazy `*_else` combinators; enforce private fields with checked constructors on types with invariants (no bypassed `Deserialize` or speculative internal builders).
+8. **Deterministic Ordering & Cryptographic Digests**: Observable outputs and canonical serializations never depend on randomized `HashMap`/`HashSet` iteration; persisted content digests use canonical encoding and cryptographic hashing rather than `DefaultHasher`.
+9. **Concurrency Guards & Rust 2024 `unsafe`**: Never hold synchronous locks across `.await`; bind RAII guards to named variables; offload CPU-heavy work to `spawn_blocking`; keep minimal `unsafe {}` blocks inside `unsafe fn` with matching `# Safety` and `// SAFETY:` proofs.
+10. **Workspace Lints & High-Signal Testing**: Forbid source-level `#![deny(warnings)]` and `#[allow]`—use narrow `#[expect(clippy::..., reason = "...")]` only when unavoidable; restrict unit tests to pure logic and invariant guards while consolidating DB tests into a single `tests/postgres.rs` per crate.
 
 ---
 
-## 上游致谢与许可证（Upstream & License）
+## Upstream & License
 
-- 语言层规则精华深度借鉴自 [`leonardomso/rust-skills`](https://github.com/leonardomso/rust-skills)（MIT License），并针对高可靠后端工程与编译器静态门禁做了系统收敛，详见 [`UPSTREAM.md`](skills/modern-rust-guidance/UPSTREAM.md)。
-- 本项目基于 [MIT License](LICENSE) 发布。
+- Language-layer idioms are deeply informed by [`leonardomso/rust-skills`](https://github.com/leonardomso/rust-skills) (MIT License) and tightened for high-reliability backend engineering and compiler static gates; see [`UPSTREAM.md`](skills/modern-rust-guidance/UPSTREAM.md).
+- Released under the [MIT License](LICENSE).
